@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Jul 2019 pada 01.28
--- Versi server: 10.1.36-MariaDB
--- Versi PHP: 7.1.22
+-- Generation Time: Jul 14, 2019 at 06:07 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `pinjaman`
+--
+
+CREATE TABLE `pinjaman` (
+  `id` int(11) NOT NULL,
+  `id_peminjam` int(11) NOT NULL,
+  `besar_pinjaman` int(11) NOT NULL,
+  `keperluan` varchar(50) NOT NULL,
+  `jangka_waktu` varchar(50) NOT NULL,
+  `tanggal_pengajuan` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pinjaman`
+--
+
+INSERT INTO `pinjaman` (`id`, `id_peminjam`, `besar_pinjaman`, `keperluan`, `jangka_waktu`, `tanggal_pengajuan`) VALUES
+(3, 3, 87000, 'Hajatan', '5', '2019-07-14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -37,7 +59,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `nama`, `username`, `password`, `level`) VALUES
@@ -50,17 +72,29 @@ INSERT INTO `user` (`id`, `nama`, `username`, `password`, `level`) VALUES
 --
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `pinjaman`
+--
+ALTER TABLE `pinjaman`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `pinjaman`
+--
+ALTER TABLE `pinjaman`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
