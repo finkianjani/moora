@@ -54,7 +54,8 @@
             <th class="text-center">Tanggal</th>
             <th class="text-center">Besar</th>
             <th class="text-center">Keperluan</th>        
-            <th class="text-center">Jangka</th>      
+            <th class="text-center">Jangka</th>                   
+            <th class="text-center">Status</th>      
             <th class="text-center">Action</th>
           </tr>
         </thead>
@@ -69,6 +70,13 @@
               <td class="text-center"><?php echo $listPinjaman['besar_pinjaman']; ?></td>
               <td class="text-center"><?php echo $listPinjaman['keperluan']; ?></td>
               <td class="text-center"><?php echo $listPinjaman['jangka_waktu']; ?></td>
+              <td class="text-center">
+                <?php echo  ($listPinjaman['status'] != null) ? 
+                  $listPinjaman['status'] 
+                  :
+                  "belum diperiksa"                 
+                ?> 
+              </td>
               <td class="text-center"> 
                 <a 
                   href="javascript:;"
@@ -210,8 +218,8 @@
             <input type="hidden" id="id" name="id"> 
           </div>
           <div class="modal-footer">
-          <input type="submit" name="submit" value="Submit" class="btn btn-danger"> 
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+          <input type="submit" name="submit" value="Ya" class="btn btn-danger"> 
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Tidak</button>
           </div>
         </form>
       </div>
