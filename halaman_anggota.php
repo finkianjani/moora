@@ -22,9 +22,13 @@
   ?>
 
   <?php
-      $sqlAnggota = "SELECT * FROM user WHERE username = '".$_SESSION['username']."'";
-      $queryAnggota = mysqli_query($koneksi, $sqlAnggota);
-      $anggota = mysqli_fetch_array($queryAnggota);
+    $sqlAnggota = "SELECT * FROM user WHERE username = '".$_SESSION['username']."'";
+    $queryAnggota = mysqli_query($koneksi, $sqlAnggota);
+    $anggota = mysqli_fetch_array($queryAnggota);
+
+    $sqlHistory = "SELECT * FROM tb_pinjaman WHERE id_anggota = '".$anggota['id']."'";;
+    $queryHistory = mysqli_query($koneksi, $sqlHistory);
+    $history = mysqli_fetch_array($queryHistory);
   ?>   
   
   <div class="container">
@@ -43,7 +47,7 @@
       </div>
     </nav>
     <div class="jumbotron"> 
-      <h2>Daftar Pijaman</h2>
+      <h2>Daftar Pengajuan</h2>
       <hr />      
       <button type="button" class="btn btn-info pull-right" style="margin-bottom: 10px" data-toggle="modal" data-target="#modalTambah">
         <span class="glyphicon glyphicon-plus"></span>
@@ -61,7 +65,7 @@
         </thead>
         <tbody>
           <?php
-            $sqlPinjaman = "SELECT * FROM pinjaman WHERE id_peminjam = '".$anggota['id']."'";
+            $sqlPinjaman = "SELECT * FROM tb_pengajuan WHERE id_peminjam = '".$anggota['id']."'";
             $queryPinjaman = mysqli_query($koneksi, $sqlPinjaman);
           ?>
           <?php while($listPinjaman = mysqli_fetch_array($queryPinjaman)){ ?>
@@ -69,10 +73,10 @@
               <td class="text-center"><?php echo $listPinjaman['tanggal_pengajuan']; ?></td>
               <td class="text-center"><?php echo $listPinjaman['besar_pinjaman']; ?></td>
               <td class="text-center"><?php echo $listPinjaman['keperluan']; ?></td>
-              <td class="text-center"><?php echo $listPinjaman['jangka_waktu']; ?></td>
+              <td class="text-center"><?php echo $listPinjaman['jangka_waktu']; ?> bulan</td>
               <td class="text-center">
-                <?php echo  ($listPinjaman['status'] != null) ? 
-                  $listPinjaman['status'] 
+                <?php echo  ($listPinjaman['status_pengajuan'] != null) ? 
+                  $listPinjaman['status_pengajuan'] 
                   :
                   "belum diperiksa"                 
                 ?> 
@@ -84,7 +88,7 @@
                   data-besar_pinjaman="<?php echo $listPinjaman['besar_pinjaman'] ?>"
                   data-keperluan="<?php echo $listPinjaman['keperluan'] ?>"
                   data-jangka_waktu="<?php echo $listPinjaman['jangka_waktu'] ?>"
-                  data-toggle="modal" data-target="#modalEdit"
+                  data-toggle="modal" data-target="#"
                   class="btn btn-warning">
                     <span class="glyphicon glyphicon-edit"></span>
                 </a> 
@@ -118,6 +122,8 @@
             <div class="form-group">
               <label for="id_pengaju">ID Pengaju</label>
               <input type="text" class="form-control" id="id_pengaju" name="id_pengaju" value="<?php echo $anggota['id']; ?>" >
+              <input type="hidden" class="form-control" id="status_keanggotaan" name="status_keanggotaan" value="<?php echo $anggota['status']; ?>" >
+              <input type="hidden" class="form-control" id="status_pinjaman" name="status_pinjaman" value="<?php echo $history['saldo_pinjaman'] != 0 ? 'Ada' : 'Tidak Ada' ; ?>" >
             </div>
             <div class="form-group">
               <label for="nama">Nama</label>
@@ -184,7 +190,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="jangka">Keperluan Untuk</label>
+              <label for="jangka">Jangka Waktu</label>
               <select class="form-control" id="jangka" name="jangka">
                 <option value="5">5 bulan</option>
                 <option value="10">10 bulan</option>

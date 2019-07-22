@@ -8,7 +8,7 @@ if( isset($_POST['submit']) ){
     $id = $_POST['id'];
 
     // buat query hapus
-    $sql = "DELETE FROM pinjaman WHERE id=$id";
+    $sql = "DELETE FROM tb_pengajuan WHERE id=$id";
     $query = mysqli_query($koneksi, $sql);
 
     // apakah query hapus berhasil?

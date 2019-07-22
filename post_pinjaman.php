@@ -10,10 +10,12 @@ if(isset($_POST['submit'])){
     $besar_pinjaman = $_POST['besar_pinjaman'];
     $keperluan = $_POST['keperluan'];
     $jangka = $_POST['jangka'];
+    $status_keanggotaan = $_POST['status_keanggotaan'];
+    $status_pinjaman = $_POST['status_pinjaman'];
     $tanggal = date("Y/m/d");
 
     // buat query
-    $sql = "INSERT INTO pinjaman (id_peminjam, besar_pinjaman, keperluan, jangka_waktu, tanggal_pengajuan) VALUE ('$id_pengaju', '$besar_pinjaman', '$keperluan', '$jangka', '$tanggal')";
+    $sql = "INSERT INTO tb_pengajuan (id_peminjam, besar_pinjaman, status_keanggotaan, status_pinjaman, keperluan, jangka_waktu, tanggal_pengajuan) VALUE ($id_pengaju, $besar_pinjaman, '$status_keanggotaan', '$status_pinjaman', '$keperluan', '$jangka', '$tanggal')";
     $query = mysqli_query($koneksi, $sql);
 
     // apakah query simpan berhasil?
