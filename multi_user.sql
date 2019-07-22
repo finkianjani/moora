@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2019 at 02:50 AM
+-- Generation Time: Jul 23, 2019 at 12:10 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -18,9 +18,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-
-
-
 --
 -- Database: `multi_user`
 --
@@ -28,7 +25,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pengajuan`
+-- Table structure for table `tb_kriteria`
+--
+
+CREATE TABLE `tb_kriteria` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(3) NOT NULL,
+  `kriteria` varchar(50) NOT NULL,
+  `jenis` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_kriteria`
+--
+
+INSERT INTO `tb_kriteria` (`id`, `kode`, `kriteria`, `jenis`) VALUES
+(1, 'K1', 'Status Keanggotaan', 'Benefit'),
+(2, 'K2', 'Status Pinjaman', 'Benefit'),
+(3, 'K3', 'Besar Pinjaman', 'Cost'),
+(4, 'K4', 'Keperluan', 'Benefit'),
+(5, 'K5', 'Jangka Waktu', 'Benefit');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pengajuan`
 --
 
 CREATE TABLE `tb_pengajuan` (
@@ -39,30 +60,22 @@ CREATE TABLE `tb_pengajuan` (
   `status_pinjaman` enum('Tidak Ada','Ada') NOT NULL,
   `keperluan` enum('Modal Usaha','Berobat','Sekolah','Kebutuhan Sehari-hari','Hajatan') NOT NULL,
   `jangka_waktu` enum('5','10','20') NOT NULL,
-  `tanggal_pengajuan` date NOT NULL
+  `tanggal_pengajuan` date NOT NULL,
+  `status_pengajuan` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_pengajuan`
+-- Dumping data for table `tb_pengajuan`
 --
 
-INSERT INTO `tb_pengajuan` (`id`, `id_peminjam`, `besar_pinjaman`, `status_keanggotaan`, `status_pinjaman`, `keperluan`, `jangka_waktu`, `tanggal_pengajuan`) VALUES
-(3, 3, 87000, 'aktif', 'Tidak Ada', 'Hajatan', '5', '2019-07-14');
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
---
--- Database: `multi_user`
---
+INSERT INTO `tb_pengajuan` (`id`, `id_peminjam`, `besar_pinjaman`, `status_keanggotaan`, `status_pinjaman`, `keperluan`, `jangka_waktu`, `tanggal_pengajuan`, `status_pengajuan`) VALUES
+(2, 8, 98000, 'pasif', 'Tidak Ada', 'Sekolah', '10', '2019-07-22', NULL),
+(3, 2, 97000, 'aktif', 'Ada', 'Hajatan', '20', '2019-07-22', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pinjaman`
+-- Table structure for table `tb_pinjaman`
 --
 
 CREATE TABLE `tb_pinjaman` (
@@ -73,14 +86,14 @@ CREATE TABLE `tb_pinjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_pinjaman`
+-- Dumping data for table `tb_pinjaman`
 --
 
 INSERT INTO `tb_pinjaman` (`id_anggota`, `nama_anggota`, `saldo_pinjaman`, `sejak tanggal`) VALUES
-(1, 'ajid', 0, '0000-00-00'),
+(1, 'Ajid', 0, '0000-00-00'),
 (2, 'Osin', 600000, '2018-03-12'),
-(3, 'idar', 0, '0000-00-00'),
-(4, 'uju', 0, '0000-00-00'),
+(3, 'Idar', 0, '0000-00-00'),
+(4, 'Uju', 0, '0000-00-00'),
 (5, 'Dede Aga', 0, '0000-00-00'),
 (6, 'emuh', 400000, '2018-11-12'),
 (7, 'Ojat', 250000, '2010-09-10'),
@@ -256,39 +269,14 @@ INSERT INTO `tb_pinjaman` (`id_anggota`, `nama_anggota`, `saldo_pinjaman`, `seja
 (177, 'Epa Sapitri', 0, '0000-00-00'),
 (178, 'Lina (Ira)', 0, '0000-00-00');
 
---
--- Indexes for dumped tables
---
-
---
--- Indeks untuk tabel `tb_pinjaman`
---
-ALTER TABLE `tb_pinjaman`
-  ADD PRIMARY KEY (`id_anggota`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `tb_pinjaman`
---
-ALTER TABLE `tb_pinjaman`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
-COMMIT;
-
-
---
--- Database: `multi_user`
---
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_simpanan`
+-- Table structure for table `tb_simpanan`
 --
 
 CREATE TABLE `tb_simpanan` (
+  `id_anggota` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `simpanan_pokok` float NOT NULL,
   `simpanan_wajib` float NOT NULL,
@@ -297,71 +285,44 @@ CREATE TABLE `tb_simpanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_simpanan`
+-- Dumping data for table `tb_simpanan`
 --
 
-INSERT INTO `tb_simpanan` (`nama`, `simpanan_pokok`, `simpanan_wajib`, `simpanan_sukarela`, `jumlah`) VALUES
-('Ajid', 5000, 1689000, 3351000, 5045000),
-('Osin', 5000, 862000, 874000, 1741000),
-('Idar/Ilim', 5000, 999000, 799000, 1893000),
-('Uju', 5000, 279000, 0, 284000),
-('Dede Aga', 5000, 668000, 210000, 883000),
-('Emuh', 5000, 495000, 773000, 1273000);
-COMMIT;
-
-
-
---
--- Database: `multi_user`
---
+INSERT INTO `tb_simpanan` (`id_anggota`, `nama`, `simpanan_pokok`, `simpanan_wajib`, `simpanan_sukarela`, `jumlah`) VALUES
+(1, 'Ajid', 5000, 1689000, 3351000, 5045000),
+(2, 'Osin', 5000, 862000, 874000, 1741000),
+(3, 'Idar/Ilim', 5000, 999000, 799000, 1893000),
+(4, 'Uju', 5000, 279000, 0, 284000),
+(5, 'Dede Aga', 5000, 668000, 210000, 883000),
+(6, 'Emuh', 5000, 495000, 773000, 1273000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pinjaman`
+-- Table structure for table `tb_subkriteria`
 --
 
-CREATE TABLE `pinjaman` (
+CREATE TABLE `tb_subkriteria` (
   `id` int(11) NOT NULL,
-  `id_peminjam` int(11) NOT NULL,
-  `besar_pinjaman` int(11) NOT NULL,
-  `keperluan` varchar(50) NOT NULL,
-  `jangka_waktu` varchar(50) NOT NULL,
-  `tanggal_pengajuan` date NOT NULL,
-  `status` varchar(20) DEFAULT NULL
+  `kode_kriteria` varchar(11) NOT NULL,
+  `subkriteria` varchar(30) NOT NULL,
+  `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pinjaman`
+-- Dumping data for table `tb_subkriteria`
 --
 
-INSERT INTO `pinjaman` (`id`, `id_peminjam`, `besar_pinjaman`, `keperluan`, `jangka_waktu`, `tanggal_pengajuan`, `status`) VALUES
-(4, 3, 80000, 'Modal Usaha', '5', '2019-07-15', NULL);
-
--- --------------------------------------------------------
-
-
-
---
--- Table structure for table `tb_kriteria`
---
-
-CREATE TABLE `tb_kriteria` (
-  `id` int(11) NOT NULL,
-  `kriteria` varchar(50) NOT NULL,
-  `jenis` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_kriteria`
---
-
-INSERT INTO `tb_kriteria` (`id`, `kriteria`, `jenis`) VALUES
-(1, 'Status Keanggotaan', 'Benefit'),
-(2, 'Status Pinjaman', 'Benefit'),
-(3, 'Besar Pinjaman', 'Cost'),
-(4, 'Keperluan', 'Benefit'),
-(5, 'Jangka Waktu', 'Benefit');
+INSERT INTO `tb_subkriteria` (`id`, `kode_kriteria`, `subkriteria`, `nilai`) VALUES
+(1, 'K1', 'aktif', 50),
+(2, 'K1', 'pasif', 10),
+(3, 'K2', 'Tidak Ada', 50),
+(4, 'K2', 'Ada', 10),
+(5, 'K4', 'Modal Usaha', 50),
+(6, 'K4', 'Berobat', 40),
+(7, 'K4', 'Sekolah', 30),
+(8, 'K4', 'Sembako', 20),
+(9, 'K4', 'Hajatan', 10);
 
 -- --------------------------------------------------------
 
@@ -374,38 +335,47 @@ CREATE TABLE `user` (
   `nama` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `level` varchar(15) NOT NULL
+  `level` varchar(15) NOT NULL,
+  `status` enum('aktif','pasif') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `username`, `password`, `level`) VALUES
-(1, 'finki anjani', 'finki', '9697', 'petugas'),
-(2, 'fatimah ulwiyatul badriyah', 'fatimah', '3107', 'pengawas'),
-(3, 'Finkan Sukma', 'finkan', '1803', 'anggota');
+INSERT INTO `user` (`id`, `nama`, `username`, `password`, `level`, `status`) VALUES
+(1, 'finki anjani', 'finki', '9697', 'petugas', 'aktif'),
+(2, 'Osin', 'osin', 'osin', 'anggota', 'aktif'),
+(3, 'Finkan Sukma', 'finkan', '1803', 'anggota', 'aktif'),
+(5, 'fatimah ulwiyatul badriyah', 'fatimah', '3107', 'pengawas', 'aktif'),
+(8, 'Awa', 'awa', 'awa', 'anggota', 'pasif');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `pinjaman`
---
-ALTER TABLE `pinjaman`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tb_anggota`
---
-ALTER TABLE `tb_anggota`
-  ADD PRIMARY KEY (`id_anggota`);
-
---
 -- Indexes for table `tb_kriteria`
 --
 ALTER TABLE `tb_kriteria`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_pengajuan`
+--
+ALTER TABLE `tb_pengajuan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_pinjaman`
+--
+ALTER TABLE `tb_pinjaman`
+  ADD PRIMARY KEY (`id_anggota`);
+
+--
+-- Indexes for table `tb_subkriteria`
+--
+ALTER TABLE `tb_subkriteria`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -419,28 +389,34 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `pinjaman`
---
-ALTER TABLE `pinjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `tb_anggota`
---
-ALTER TABLE `tb_anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `tb_kriteria`
 --
 ALTER TABLE `tb_kriteria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `tb_pengajuan`
+--
+ALTER TABLE `tb_pengajuan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_pinjaman`
+--
+ALTER TABLE `tb_pinjaman`
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+
+--
+-- AUTO_INCREMENT for table `tb_subkriteria`
+--
+ALTER TABLE `tb_subkriteria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
