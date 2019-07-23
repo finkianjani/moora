@@ -6,7 +6,7 @@
  
 <h2>MASTER KRITERIA</h2>
 <hr />      
-<button type="button" class="btn btn-info pull-right" style="margin-bottom: 10px" data-toggle="modal" data-target="#">
+<button type="button" class="btn btn-info pull-right" style="margin-bottom: 10px" data-toggle="modal" data-target="#modalTambah">
   <span class="glyphicon glyphicon-plus"></span>
 </button>
 <table class="table table-bordered">
@@ -32,16 +32,17 @@
           <a 
             href="javascript:;"
             data-id="<?php echo $listKriteria['id'] ?>"
-            data-besar_pinjaman="<?php echo $listKriteria['kriteria'] ?>"
-            data-keperluan="<?php echo $listKriteria['jenis'] ?>"
-            data-toggle="modal" data-target="#"
+            data-kode="<?php echo $listKriteria['kode'] ?>"
+            data-kriteria="<?php echo $listKriteria['kriteria'] ?>"
+            data-jenis="<?php echo $listKriteria['jenis'] ?>"
+            data-toggle="modal" data-target="#modalEdit"
             class="btn btn-warning">
               <span class="glyphicon glyphicon-edit"></span>
           </a> 
           <a 
             href="javascript:;"
             data-id="<?php echo $listKriteria['id'] ?>"
-            data-toggle="modal" data-target="#"
+            data-toggle="modal" data-target="#modalHapus"
             class="btn btn-danger">
               <span class="glyphicon glyphicon-trash"></span>
           </a>           
@@ -59,20 +60,20 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Form Pengajuan</h4>
+        <h4 class="modal-title">Tambah Kriteria</h4>
       </div>
       <form action="petugas/post_kriteria.php" method="POST">
         <div class="modal-body">
           <div class="form-group">
-            <label for="id_pengaju">Kode</label>
+            <label for="kode">Kode</label>
             <input type="text" class="form-control" id="kode" name="kode" >
           </div>
           <div class="form-group">
-            <label for="nama">Kriteria</label>
+            <label for="kriteria">Kriteria</label>
             <input type="text" class="form-control" id="kriteria" name="kriteria" >
           </div>
           <div class="form-group">
-            <label for="keperluan">Jenis</label>
+            <label for="jenis">Jenis</label>
             <select class="form-control" id="jenis" name="jenis">
               <option value="Cost">Cost</option>
               <option value="Benefit">Benefit</option>
@@ -97,31 +98,24 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Ubah Data Pengajuan</h4>
+        <h4 class="modal-title">Edit Kriteria</h4>
       </div>
-      <form action="edit_pinjaman.php" method="POST">
+      <form action="petugas/edit_kriteria.php" method="POST">
         <div class="modal-body">
           <div class="form-group">
-            <label for="besar_pinjaman">Besar Pinjaman</label>
-            <input type="hidden" id="id" name="id"> 
-            <input type="number" class="form-control" id="besar_pinjaman" name="besar_pinjaman" >
+            <label for="kode">Kode</label>
+            <input type="text" id="id" name="id"> 
+            <input type="text" class="form-control" id="kode" name="kode" >
           </div>
           <div class="form-group">
-            <label for="keperluan">Keperluan Untuk</label>
-            <select class="form-control" id="keperluan" name="keperluan">
-              <option value="Modal Usaha">Modal Usaha</option>
-              <option value="Berobat">Berobat</option>
-              <option value="Sekolah">Biaya Sekolah</option>
-              <option value="Sembako">Kebutuhan Sehari-hari</option>
-              <option value="Hajatan">Hajatan</option>
-            </select>
+            <label for="kriteria">Kriteria</label>
+            <input type="text" class="form-control" id="kriteria" name="kriteria" >
           </div>
           <div class="form-group">
-            <label for="jangka">Keperluan Untuk</label>
-            <select class="form-control" id="jangka" name="jangka">
-              <option value="5">5 bulan</option>
-              <option value="10">10 bulan</option>
-              <option value="20">20 bulan</option>
+            <label for="jenis">Jenis</label>
+            <select class="form-control" id="jenis" name="jenis">
+              <option value="Cost">Cost</option>
+              <option value="Benefit">Benefit</option>
             </select>
           </div>
       </div>
@@ -143,9 +137,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Alert</h4>
+        <h4 class="modal-title">Hapus Kriteria</h4>
       </div>
-      <form action="hapus_pinjaman.php" method="POST">
+      <form action="petugas/hapus_kriteria.php" method="POST">
         <div class="modal-body">
           <p>Apakah anda yakin ingin menghapus data pinjaman ini?</p>
           <input type="hidden" id="id" name="id"> 
@@ -183,9 +177,9 @@ $(document).ready(function() {
 
         // Isi nilai pada field
         modal.find('#id').attr("value",div.data('id'));
-        modal.find('#besar_pinjaman').attr("value",div.data('besar_pinjaman'));
-        modal.find('#keperluan').attr("value",div.data('keperluan'));
-        modal.find('#jangka_waktu').attr("value",div.data('jangka_waktu'));
+        modal.find('#kode').attr("value",div.data('kode'));
+        modal.find('#kriteria').attr("value",div.data('kriteria'));
+        modal.find('#jenis').attr("value",div.data('jenis'));
     });
 });
 </script>

@@ -7,14 +7,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Didact+Gothic&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: 'Didact Gothic', sans-serif;">
 
   <?php include("koneksi.php"); ?>
   <?php 
     session_start();
-
-    // cek apakah yang mengakses halaman ini sudah login
     if($_SESSION['level']==""){
       header("location:index.php?pesan=gagal");
     }
