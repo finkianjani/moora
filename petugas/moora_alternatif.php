@@ -5,10 +5,7 @@
 ?>    
  
 <h2>DATA ALTERNATIF</h2>
-<hr />      
-<button type="button" class="btn btn-info pull-right" style="margin-bottom: 10px" data-toggle="modal" data-target="#">
-  <span class="glyphicon glyphicon-plus"></span>
-</button>
+<hr />   
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -19,7 +16,6 @@
       <th class="text-center">K3</th>
       <th class="text-center">K4</th>
       <th class="text-center">K5</th>
-      <th class="text-center">Aksi</th>
     </tr>
   </thead>
   <tbody>
@@ -50,20 +46,6 @@
         </td>
         <td class="text-center"><?php echo $listPengajuan['keperluan']; ?></td>
         <td class="text-center"><?php echo $listPengajuan['jangka_waktu']; ?> bulan</td>
-        <td class="text-center"> 
-          <a 
-            href="javascript:;"
-            data-toggle="modal" data-target="#"
-            class="btn btn-warning">
-              <span class="glyphicon glyphicon-edit"></span>
-          </a> 
-          <a 
-            href="javascript:;"
-            data-toggle="modal" data-target="#"
-            class="btn btn-danger">
-              <span class="glyphicon glyphicon-trash"></span>
-          </a>           
-        </td>
       </tr>
     <?php } ?>
   </tbody>

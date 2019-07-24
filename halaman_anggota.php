@@ -5,16 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Arvo|Didact+Gothic&display=swap" rel="stylesheet">
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </head>
 <body style="font-family: 'Didact Gothic', sans-serif;">
   <?php include("koneksi.php"); ?>
   <?php 
     session_start();
-
-    // cek apakah yang mengakses halaman ini sudah login
     if($_SESSION['level']==""){
       header("location:index.php?pesan=gagal");
     }
@@ -31,11 +31,12 @@
     $history = mysqli_fetch_array($queryHistory);
   ?>   
   
-  <div class="container">
+  <div class="container">  
+    <h1 class="text-center">KOPERASI PARA PETANI MEKAR HARAPAN</h1>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Koprasi Pinjaman--Anggota</a>
+          <a class="navbar-brand" href="#">Anggota</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $anggota['nama']; ?></a>

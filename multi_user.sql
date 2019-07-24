@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Jul 2019 pada 10.28
--- Versi server: 10.3.16-MariaDB
--- Versi PHP: 7.1.30
+-- Generation Time: Jul 24, 2019 at 11:37 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kriteria`
+-- Table structure for table `tb_kriteria`
 --
 
 CREATE TABLE `tb_kriteria` (
@@ -36,7 +36,7 @@ CREATE TABLE `tb_kriteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_kriteria`
+-- Dumping data for table `tb_kriteria`
 --
 
 INSERT INTO `tb_kriteria` (`id`, `kode`, `kriteria`, `jenis`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `tb_kriteria` (`id`, `kode`, `kriteria`, `jenis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pengajuan`
+-- Table structure for table `tb_pengajuan`
 --
 
 CREATE TABLE `tb_pengajuan` (
@@ -65,7 +65,7 @@ CREATE TABLE `tb_pengajuan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_pengajuan`
+-- Dumping data for table `tb_pengajuan`
 --
 
 INSERT INTO `tb_pengajuan` (`id`, `id_peminjam`, `besar_pinjaman`, `status_keanggotaan`, `status_pinjaman`, `keperluan`, `jangka_waktu`, `tanggal_pengajuan`, `status_pengajuan`) VALUES
@@ -77,7 +77,7 @@ INSERT INTO `tb_pengajuan` (`id`, `id_peminjam`, `besar_pinjaman`, `status_keang
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pinjaman`
+-- Table structure for table `tb_pinjaman`
 --
 
 CREATE TABLE `tb_pinjaman` (
@@ -88,7 +88,7 @@ CREATE TABLE `tb_pinjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_pinjaman`
+-- Dumping data for table `tb_pinjaman`
 --
 
 INSERT INTO `tb_pinjaman` (`id_anggota`, `nama_anggota`, `saldo_pinjaman`, `sejak tanggal`) VALUES
@@ -274,7 +274,7 @@ INSERT INTO `tb_pinjaman` (`id_anggota`, `nama_anggota`, `saldo_pinjaman`, `seja
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_simpanan`
+-- Table structure for table `tb_simpanan`
 --
 
 CREATE TABLE `tb_simpanan` (
@@ -283,7 +283,7 @@ CREATE TABLE `tb_simpanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_simpanan`
+-- Dumping data for table `tb_simpanan`
 --
 
 INSERT INTO `tb_simpanan` (`id_anggota`, `jumlah`) VALUES
@@ -469,7 +469,7 @@ INSERT INTO `tb_simpanan` (`id_anggota`, `jumlah`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_subkriteria`
+-- Table structure for table `tb_subkriteria`
 --
 
 CREATE TABLE `tb_subkriteria` (
@@ -480,7 +480,7 @@ CREATE TABLE `tb_subkriteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_subkriteria`
+-- Dumping data for table `tb_subkriteria`
 --
 
 INSERT INTO `tb_subkriteria` (`id`, `kode_kriteria`, `subkriteria`, `nilai`) VALUES
@@ -492,12 +492,18 @@ INSERT INTO `tb_subkriteria` (`id`, `kode_kriteria`, `subkriteria`, `nilai`) VAL
 (6, 'K4', 'Berobat', 40),
 (7, 'K4', 'Sekolah', 30),
 (8, 'K4', 'Sembako', 20),
-(9, 'K4', 'Hajatan', 10);
+(9, 'K4', 'Hajatan', 10),
+(10, 'K3', '< 3x simpanan', 50),
+(11, 'K3', '= 3x simpanan', 50),
+(12, 'K3', '> 3x simpanan', 10),
+(13, 'K5', '20', 50),
+(14, 'K5', '10', 30),
+(15, 'K5', '5', 20);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -510,7 +516,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_anggota`, `nama`, `username`, `password`, `level`, `status`) VALUES
@@ -698,77 +704,77 @@ INSERT INTO `user` (`id_anggota`, `nama`, `username`, `password`, `level`, `stat
 --
 
 --
--- Indeks untuk tabel `tb_kriteria`
+-- Indexes for table `tb_kriteria`
 --
 ALTER TABLE `tb_kriteria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tb_pengajuan`
+-- Indexes for table `tb_pengajuan`
 --
 ALTER TABLE `tb_pengajuan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tb_pinjaman`
+-- Indexes for table `tb_pinjaman`
 --
 ALTER TABLE `tb_pinjaman`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indeks untuk tabel `tb_simpanan`
+-- Indexes for table `tb_simpanan`
 --
 ALTER TABLE `tb_simpanan`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indeks untuk tabel `tb_subkriteria`
+-- Indexes for table `tb_subkriteria`
 --
 ALTER TABLE `tb_subkriteria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kriteria`
+-- AUTO_INCREMENT for table `tb_kriteria`
 --
 ALTER TABLE `tb_kriteria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pengajuan`
+-- AUTO_INCREMENT for table `tb_pengajuan`
 --
 ALTER TABLE `tb_pengajuan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pinjaman`
+-- AUTO_INCREMENT for table `tb_pinjaman`
 --
 ALTER TABLE `tb_pinjaman`
   MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_simpanan`
+-- AUTO_INCREMENT for table `tb_simpanan`
 --
 ALTER TABLE `tb_simpanan`
   MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_subkriteria`
+-- AUTO_INCREMENT for table `tb_subkriteria`
 --
 ALTER TABLE `tb_subkriteria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;

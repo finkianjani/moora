@@ -3,7 +3,7 @@
 <button type="button" class="btn btn-info pull-right" style="margin-bottom: 10px" data-toggle="modal" data-target="#modalTambah">
   <span class="glyphicon glyphicon-plus"></span>
 </button>
-<table class="table table-bordered">
+<table class="table table-bordered" id="tabel-data">
   <thead>
     <tr>
       <th class="text-center">Kode Kriteria</th>

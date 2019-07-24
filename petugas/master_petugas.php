@@ -3,7 +3,7 @@
 <button type="button" class="btn btn-info pull-right" style="margin-bottom: 10px" data-toggle="modal" data-target="#modalTambah">
   <span class="glyphicon glyphicon-plus"></span>
 </button>
-<table class="table table-bordered">
+<table class="table table-bordered" id="tabel-data">
   <thead>
     <tr>
       <th class="text-center">Nama</th>
@@ -19,7 +19,7 @@
     ?>
     <?php while($list = mysqli_fetch_array($query)){ ?>
       <tr class="success">
-        <td class="text-center"><?php echo $list['nama']; ?></td>
+        <td><?php echo $list['nama']; ?></td>
         <td><?php echo $list['username']; ?></td>
         <td class="text-center"><?php echo $list['status']; ?></td>
         <td class="text-center"> 
