@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2019 at 11:37 AM
+-- Generation Time: Jul 24, 2019 at 12:44 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -507,11 +507,11 @@ INSERT INTO `tb_subkriteria` (`id`, `kode_kriteria`, `subkriteria`, `nilai`) VAL
 --
 
 CREATE TABLE `user` (
-  `id_anggota` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `level` varchar(15) NOT NULL,
+  `level` enum('petugas','pengawas','anggota','ketua') NOT NULL,
   `status` enum('aktif','pasif') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -519,7 +519,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_anggota`, `nama`, `username`, `password`, `level`, `status`) VALUES
+INSERT INTO `user` (`id`, `nama`, `username`, `password`, `level`, `status`) VALUES
 (1, 'Ajid', 'ajid', 'ketua', 'ketua', 'aktif'),
 (2, 'Osin', 'osin', 'osin', 'anggota', 'aktif'),
 (3, 'Awa/Elis', 'awa', 'awa', 'anggota', 'pasif'),
@@ -697,7 +697,10 @@ INSERT INTO `user` (`id_anggota`, `nama`, `username`, `password`, `level`, `stat
 (175, 'Epa Sapitri', 'epasapitri', 'anggota', 'anggota', 'aktif'),
 (176, 'Lina (Ira)', 'linaira', 'anggota', 'anggota', 'aktif'),
 (177, 'Ojat', 'ojat', 'anggota', 'anggota', 'aktif'),
-(178, 'Neng Aep', 'Nengaep', 'anggota', 'anggota', 'aktif');
+(178, 'Neng Aep', 'Nengaep', 'anggota', 'anggota', 'aktif'),
+(179, 'Nama Pengawas', 'pengawas', 'pengawas', 'pengawas', 'aktif'),
+(180, 'Nama Petugas', 'petugas', 'petugas', 'petugas', 'aktif'),
+(181, 'Nama Ketua', 'ketua', 'ketua', 'ketua', 'aktif');
 
 --
 -- Indexes for dumped tables
@@ -737,7 +740,7 @@ ALTER TABLE `tb_subkriteria`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_anggota`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -777,7 +780,7 @@ ALTER TABLE `tb_subkriteria`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

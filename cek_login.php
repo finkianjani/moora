@@ -37,6 +37,14 @@ if($cek > 0){
 		// alihkan ke halaman dashboard pengawas
 		header("location:halaman_pengawas.php");
 
+	// cek jika user login sebagai ketua
+	}else if($data['level']=="ketua"){
+		// buat session login dan username
+		$_SESSION['username'] = $username;
+		$_SESSION['level'] = "ketua";
+		// alihkan ke halaman dashboard ketua
+		header("location:halaman_ketua.php");
+
 	// cek jika user login sebagai anggota
 	}else if($data['level']=="anggota"){
 		// buat session login dan username

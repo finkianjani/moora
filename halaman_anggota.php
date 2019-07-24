@@ -118,7 +118,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Form Pengajuan</h4>
         </div>
-        <form action="post_pinjaman.php" method="POST">
+        <form action="anggota/post_pinjaman.php" method="POST">
           <div class="modal-body">
             <div class="form-group">
               <label for="id_pengaju">ID Pengaju</label>
@@ -173,7 +173,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Ubah Data Pengajuan</h4>
         </div>
-        <form action="edit_pinjaman.php" method="POST">
+        <form action="anggota/edit_pinjaman.php" method="POST">
           <div class="modal-body">
             <div class="form-group">
               <label for="besar_pinjaman">Besar Pinjaman</label>
@@ -219,7 +219,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Alert</h4>
         </div>
-        <form action="hapus_pinjaman.php" method="POST">
+        <form action="anggota/hapus_pinjaman.php" method="POST">
           <div class="modal-body">
             <p>Apakah anda yakin ingin menghapus data pinjaman ini?</p>
             <input type="hidden" id="id" name="id"> 
