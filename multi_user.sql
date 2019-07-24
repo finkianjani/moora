@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Jul 2019 pada 10.16
+-- Waktu pembuatan: 24 Jul 2019 pada 10.28
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.1.30
 
@@ -81,7 +81,7 @@ INSERT INTO `tb_pengajuan` (`id`, `id_peminjam`, `besar_pinjaman`, `status_keang
 --
 
 CREATE TABLE `tb_pinjaman` (
-  `id` int(11) NOT NULL,
+  `id_anggota` int(11) NOT NULL,
   `nama_anggota` varchar(50) NOT NULL,
   `saldo_pinjaman` float NOT NULL,
   `sejak tanggal` date NOT NULL
@@ -91,7 +91,7 @@ CREATE TABLE `tb_pinjaman` (
 -- Dumping data untuk tabel `tb_pinjaman`
 --
 
-INSERT INTO `tb_pinjaman` (`id`, `nama_anggota`, `saldo_pinjaman`, `sejak tanggal`) VALUES
+INSERT INTO `tb_pinjaman` (`id_anggota`, `nama_anggota`, `saldo_pinjaman`, `sejak tanggal`) VALUES
 (1, 'Ajid', 0, '0000-00-00'),
 (2, 'Osin', 600000, '2018-03-12'),
 (3, 'Awa/Elis', 0, '0000-00-00'),
@@ -278,7 +278,7 @@ INSERT INTO `tb_pinjaman` (`id`, `nama_anggota`, `saldo_pinjaman`, `sejak tangga
 --
 
 CREATE TABLE `tb_simpanan` (
-  `id` int(11) NOT NULL,
+  `id_anggota` int(11) NOT NULL,
   `jumlah` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -286,7 +286,7 @@ CREATE TABLE `tb_simpanan` (
 -- Dumping data untuk tabel `tb_simpanan`
 --
 
-INSERT INTO `tb_simpanan` (`id`, `jumlah`) VALUES
+INSERT INTO `tb_simpanan` (`id_anggota`, `jumlah`) VALUES
 (1, 5045000),
 (2, 1741000),
 (3, 871000),
@@ -501,7 +501,7 @@ INSERT INTO `tb_subkriteria` (`id`, `kode_kriteria`, `subkriteria`, `nilai`) VAL
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id_anggota` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -513,7 +513,7 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `username`, `password`, `level`, `status`) VALUES
+INSERT INTO `user` (`id_anggota`, `nama`, `username`, `password`, `level`, `status`) VALUES
 (1, 'Ajid', 'ajid', 'ketua', 'ketua', 'aktif'),
 (2, 'Osin', 'osin', 'osin', 'anggota', 'aktif'),
 (3, 'Awa/Elis', 'awa', 'awa', 'anggota', 'pasif'),
@@ -713,13 +713,13 @@ ALTER TABLE `tb_pengajuan`
 -- Indeks untuk tabel `tb_pinjaman`
 --
 ALTER TABLE `tb_pinjaman`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_anggota`);
 
 --
 -- Indeks untuk tabel `tb_simpanan`
 --
 ALTER TABLE `tb_simpanan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_anggota`);
 
 --
 -- Indeks untuk tabel `tb_subkriteria`
@@ -731,7 +731,7 @@ ALTER TABLE `tb_subkriteria`
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_anggota`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -753,13 +753,13 @@ ALTER TABLE `tb_pengajuan`
 -- AUTO_INCREMENT untuk tabel `tb_pinjaman`
 --
 ALTER TABLE `tb_pinjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_simpanan`
 --
 ALTER TABLE `tb_simpanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_subkriteria`
@@ -771,7 +771,7 @@ ALTER TABLE `tb_subkriteria`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
