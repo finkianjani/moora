@@ -48,6 +48,7 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">MOORA
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
+              <li><a href="halaman_petugas.php?page=moora_alternatif">Data Alternatif</a></li>
               <li><a href="halaman_petugas.php?page=moora_penilaian">Penilaian</a></li>
               <li><a href="halaman_petugas.php?page=moora_hasil">Hasil</a></li>
             </ul>
@@ -83,6 +84,9 @@
               break; 
             case 'master_sub':
               include "petugas/master_sub.php";
+              break; 
+            case 'moora_alternatif':
+              include "petugas/moora_alternatif.php";
               break; 
             case 'moora_penilaian':
               include "petugas/moora_penilaian.php";
