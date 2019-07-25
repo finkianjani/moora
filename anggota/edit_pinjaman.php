@@ -1,6 +1,6 @@
 <?php
 
-include("koneksi.php");
+include("../koneksi.php");
 
 if(isset($_POST['submit'])){
 
@@ -13,9 +13,9 @@ if(isset($_POST['submit'])){
     $query = mysqli_query($koneksi, $sql);
 
     if( $query ) {
-        header('Location: halaman_anggota.php?status=sukses');
+        header('Location: ../halaman_anggota.php?status=sukses');
     } else {
-        header('Location: halaman_anggota.php?status=gagal');
+        header('Location: ../halaman_anggota.php?status=gagal');
     }
 
 

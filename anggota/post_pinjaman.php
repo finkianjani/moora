@@ -1,6 +1,6 @@
 <?php
 
-include("koneksi.php");
+include("../koneksi.php");
 
 // cek apakah tombol daftar sudah diklik atau blum?
 if(isset($_POST['submit'])){
@@ -21,10 +21,10 @@ if(isset($_POST['submit'])){
     // apakah query simpan berhasil?
     if( $query ) {
         // kalau berhasil alihkan ke halaman index.php dengan status=sukses
-        header('Location: halaman_anggota.php?status=sukses');
+        header('Location: ../halaman_anggota.php?status=sukses');
     } else {
         // kalau gagal alihkan ke halaman indek.php dengan status=gagal
-        header('Location: halaman_anggota.php?status=gagal');
+        header('Location: ../halaman_anggota.php?status=gagal');
     }
 
 

@@ -1,5 +1,5 @@
 <?php
-    include("koneksi.php");
+    include("../koneksi.php");
 
     if( isset($_POST['submit']) ){
 
@@ -9,7 +9,7 @@
         $query = mysqli_query($koneksi, $sql);
 
         if( $query ){
-            header('Location: halaman_anggota.php');
+            header('Location: ../halaman_anggota.php');
         } else {
             die("gagal menghapus...");
         }
