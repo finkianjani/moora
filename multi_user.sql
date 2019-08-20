@@ -44,7 +44,7 @@ INSERT INTO `tb_kriteria` (`id`, `kode`, `kriteria`, `jenis`) VALUES
 (2, 'K2', 'Status Pinjaman', 'Benefit'),
 (3, 'K3', 'Besar Pinjaman', 'Cost'),
 (4, 'K4', 'Keperluan', 'Benefit'),
-(5, 'K5', 'Jangka Waktu', 'Benefit');
+(5, 'K5', 'Jangka Waktu', 'Cost');
 
 -- --------------------------------------------------------
 
@@ -496,9 +496,9 @@ INSERT INTO `tb_subkriteria` (`id`, `kode_kriteria`, `subkriteria`, `nilai`) VAL
 (10, 'K3', '< 3x simpanan', 50),
 (11, 'K3', '= 3x simpanan', 50),
 (12, 'K3', '> 3x simpanan', 10),
-(13, 'K5', '20', 50),
+(13, 'K5', '20', 20),
 (14, 'K5', '10', 30),
-(15, 'K5', '5', 20);
+(15, 'K5', '5', 50);
 
 -- --------------------------------------------------------
 
