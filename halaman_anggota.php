@@ -122,13 +122,13 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="id_pengaju">ID Pengaju</label>
-              <input type="text" class="form-control" id="id_pengaju" name="id_pengaju" value="<?php echo $anggota['id']; ?>" >
+              <input type="text" class="form-control" id="id_pengaju" name="id_pengaju" value="<?php echo $anggota['id']; ?>" readonly>
               <input type="hidden" class="form-control" id="status_keanggotaan" name="status_keanggotaan" value="<?php echo $anggota['status']; ?>" >
               <input type="hidden" class="form-control" id="status_pinjaman" name="status_pinjaman" value="<?php echo $history['saldo_pinjaman'] != 0 ? 'Ada' : 'Tidak Ada' ; ?>" >
             </div>
             <div class="form-group">
               <label for="nama">Nama</label>
-              <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $anggota['nama']; ?>" >
+              <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $anggota['nama']; ?>" readonly>
             </div>
             <div class="form-group">
               <label for="besar_pinjaman">Besar Pinjaman</label>

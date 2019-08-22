@@ -46,9 +46,10 @@
     <div class="jumbotron"> 
       <h2>Daftar Pengajuan</h2>
       <hr />    
-      <table class="table table-bordered" id="table-data">
+      <table class="table table-bordered">
         <thead>
           <tr>
+            <th class="text-center">Nama Anggota</th>
             <th class="text-center">Tanggal</th>
             <th class="text-center">Besar</th>
             <th class="text-center">Keperluan</th>        
@@ -59,11 +60,12 @@
         </thead>
         <tbody>
           <?php
-            $sqlPinjaman = "SELECT * FROM tb_pengajuan";
+            $sqlPinjaman = "SELECT e.nama, a.tanggal_pengajuan, a.besar_pinjaman, a.keperluan, a.jangka_waktu, a.status_pengajuan, a.id FROM tb_pengajuan a, tb_penilaian d, user e WHERE a.id = d.id_pengajuan AND a.id_peminjam = e.id ORDER BY d.rank";
             $queryPinjaman = mysqli_query($koneksi, $sqlPinjaman);
           ?>
           <?php while($listPinjaman = mysqli_fetch_array($queryPinjaman)){ ?>
             <tr class="success">
+              <td class="text-center"><?php echo $listPinjaman['nama']; ?></td>
               <td class="text-center"><?php echo $listPinjaman['tanggal_pengajuan']; ?></td>
               <td class="text-center"><?php echo $listPinjaman['besar_pinjaman']; ?></td>
               <td class="text-center"><?php echo $listPinjaman['keperluan']; ?></td>
@@ -78,12 +80,18 @@
               <td class="text-center"> 
                 <a 
                   href="javascript:;"
+                  data-id="<?php echo $listPinjaman['id'] ?>"                  
+                  data-type="setujui"
+                  data-toggle="modal" data-target="#modalSetujui"
                   class="btn btn-default">
                     SETUJUI
                 </a> 
                 <a 
                   href="javascript:;"
-                  class="btn btn-default">
+                  data-id="<?php echo $listPinjaman['id'] ?>"                  
+                  data-type="tolak"
+                  data-toggle="modal" data-target="#modalTolak"
+                  class="btn btn-danger">
                     TOLAK
                 </a>           
               </td>
@@ -94,8 +102,8 @@
     </div>
   </div>
 
-  <!-- Modal Hapus-->
-  <div id="modalKonfirmasi" class="modal fade" role="dialog">
+  <!-- Modal Setujui-->
+  <div id="modalSetujui" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -104,10 +112,37 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Alert</h4>
         </div>
-        <form action="hapus_pinjaman.php" method="POST">
+        <form action="proses_pinjaman.php" method="POST">
           <div class="modal-body">
-            <p>Apakah anda yakin ingin menghapus data pinjaman ini?</p>
+            <p>Apakah anda yakin ingin menyetujui peminjaman ini?</p>
             <input type="hidden" id="id" name="id"> 
+            <input type="hidden" id="type" name="type"> 
+          </div>
+          <div class="modal-footer">
+          <input type="submit" name="submit" value="Ya" class="btn btn-danger"> 
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Tidak</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal Setujui-->
+  <div id="modalTolak" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Alert</h4>
+        </div>
+        <form action="proses_pinjaman.php" method="POST">
+          <div class="modal-body">
+            <p>Apakah anda yakin ingin menolak peminjaman ini?</p>
+            <input type="hidden" id="id" name="id"> 
+            <input type="hidden" id="type" name="type"> 
           </div>
           <div class="modal-footer">
           <input type="submit" name="submit" value="Ya" class="btn btn-danger"> 
@@ -121,24 +156,35 @@
 
 </body>
 
-<!--Untuk Hapus Data-->
+<!--Untuk Konfirmasi Persetujuan Data-->
 <script>
 $(document).ready(function() {
 
     // Untuk sunting
-    $('#modalHapus').on('show.bs.modal', function (event) {
+    $('#modalSetujui').on('show.bs.modal', function (event) {
         var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
         var modal          = $(this)
 
         // Isi nilai pada field
         modal.find('#id').attr("value",div.data('id'));
+        modal.find('#type').attr("value",div.data('type'));
     });
 });
 
 </script>
 <script>
-    $(document).ready(function(){
-        $('#tabel-data').DataTable();
+$(document).ready(function() {
+
+    // Untuk sunting
+    $('#modalTolak').on('show.bs.modal', function (event) {
+        var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+        var modal          = $(this)
+
+        // Isi nilai pada field
+        modal.find('#id').attr("value",div.data('id'));
+        modal.find('#type').attr("value",div.data('type'));
     });
+});
+
 </script>
 </html>
